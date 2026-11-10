@@ -196,5 +196,4 @@ rm -rf /tmp/Xpro_build
 # --- Etapa 7 ---
 log_success "Instalação concluída com sucesso!"
 echo -e "Use o comando ${YELLOW}${CMD_NAME}${NC} para abrir o menu."
-echo -e "Compatibilidade: ${YELLOW}${LEGACY_CMD_NAME}${NC} também continua disponível."
 echo -e "--------------------------------------------------------------"
