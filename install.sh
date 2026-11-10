@@ -1,9 +1,10 @@
 #!/bin/bash
-# Azpro Installer - Version v3
+# Xpro Installer - Version v3
 
 REPO_URL="https://github.com/Aznetpro/xpro.git"
 REPO_BRANCH="main"
-CMD_NAME="azpro"
+CMD_NAME="xpro"
+LEGACY_CMD_NAME="azpro"
 TOTAL_STEPS=7
 
 CURRENT_STEP=0
@@ -75,9 +76,9 @@ for SERVICE_FILE in /etc/systemd/system/proxy-*.service; do
 done
 
 clear
-echo -e "${CYAN}${BOLD}    A Z P R O  V E R S I O N  F R E E${NC}"
+echo -e "${CYAN}${BOLD}    X P R O  V E R S I O N  F R E E${NC}"
 echo -e "${BLUE}${BOLD}----------------------------------------${NC}"
-log_info "Iniciando instalação do Azpro v3.1.0 (🇧🇷)..."
+log_info "Iniciando instalação do Xpro v3.1.0 (🇧🇷)..."
 
 # --- Etapa 1 ---
 show_progress "Verificando dependências..."
@@ -169,6 +170,13 @@ if [ -f "menu.sh" ]; then
         log_error "Já existe outro comando em ${MENU_COMMAND}; ele não foi sobrescrito."
     fi
     ln -sfn /opt/mpro/menu "$MENU_COMMAND"
+    LEGACY_MENU_COMMAND="/usr/local/bin/${LEGACY_CMD_NAME}"
+    if { [ -e "$LEGACY_MENU_COMMAND" ] || [ -L "$LEGACY_MENU_COMMAND" ]; } && \
+        { [ ! -L "$LEGACY_MENU_COMMAND" ] || [ "$(readlink -- "$LEGACY_MENU_COMMAND")" != "/opt/mpro/menu" ]; }; then
+        log_info "O comando ${LEGACY_CMD_NAME} já existe e não será sobrescrito."
+    else
+        ln -sfn /opt/mpro/menu "$LEGACY_MENU_COMMAND"
+    fi
     for LEGACY_COMMAND in /usr/local/bin/wzpro /usr/local/bin/wspro /usr/local/bin/mpro; do
         if [ -L "$LEGACY_COMMAND" ] && [ "$(readlink -- "$LEGACY_COMMAND")" = "/opt/mpro/menu" ]; then
             rm -f -- "$LEGACY_COMMAND"
@@ -188,4 +196,5 @@ rm -rf /tmp/Mpro_build
 # --- Etapa 7 ---
 log_success "Instalação concluída com sucesso!"
 echo -e "Use o comando ${YELLOW}${CMD_NAME}${NC} para abrir o menu."
+echo -e "Compatibilidade: ${YELLOW}${LEGACY_CMD_NAME}${NC} também continua disponível."
 echo -e "--------------------------------------------------------------"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ============================================
-# Azpro Menu - Free v5
+# Xpro Menu - Free v5
 # ============================================
 
 LKPROXY="/opt/mpro/proxy"
@@ -63,7 +63,7 @@ box_bottom() {
 }
 
 show_banner() {
-    local TITLE="A Z P R O  P R O T O C O L O  F R E E" PADDING SEPARATOR
+    local TITLE="X P R O  P R O T O C O L O  F R E E" PADDING SEPARATOR
     printf -v PADDING '%*s' "$(((BOX_WIDTH + 4 - ${#TITLE}) / 2))" ''
     printf -v SEPARATOR '%*s' "$((BOX_WIDTH + 4))" ''
     SEPARATOR=${SEPARATOR// /-}
@@ -669,7 +669,7 @@ update_from_github() {
         return
     }
     if ! run_update_step "Baixando instalador do GitHub" curl -fsSL --connect-timeout 15 --max-time 60 \
-        "https://raw.githubusercontent.com/Lacasx1/Azpro/main/install.sh" \
+        "https://raw.githubusercontent.com/Aznetpro/xpro/main/install.sh" \
         -o "$UPDATE_SCRIPT"; then
         rm -f "$UPDATE_SCRIPT"
         echo -e "${RED}Falha ao baixar o instalador. Nada foi atualizado.${NC}"
@@ -677,7 +677,7 @@ update_from_github() {
         return
     fi
 
-    if ! run_update_step "Validando fonte do instalador" grep -q 'REPO_URL="https://github.com/Lacasx1/Azpro.git"' "$UPDATE_SCRIPT"; then
+    if ! run_update_step "Validando fonte do instalador" grep -q 'REPO_URL="https://github.com/Aznetpro/xpro.git"' "$UPDATE_SCRIPT"; then
         rm -f "$UPDATE_SCRIPT"
         echo -e "${RED}O arquivo baixado não passou na validação do repositório.${NC}"
         read -r -p "Enter para continuar..." _
@@ -716,7 +716,7 @@ uninstall_proxy() {
     show_banner
     echo ""
     box_top
-    box_line "${RED}${BOLD}DESINSTALAR Azpro${NC}"
+    box_line "${RED}${BOLD}DESINSTALAR Xpro${NC}"
     box_mid
     box_line "Para serviços e remove binários do proxy."
     box_line "Remove certificados TLS de /opt/mpro."
@@ -725,7 +725,7 @@ uninstall_proxy() {
     echo ""
 
     if [[ "$EUID" -ne 0 ]]; then
-        echo -e "${RED}Execute azpro como root para desinstalar.${NC}"
+        echo -e "${RED}Execute xpro como root para desinstalar.${NC}"
         read -r -p "Enter para voltar..." _
         return 1
     fi
@@ -796,6 +796,7 @@ uninstall_proxy() {
     done
 
     remove_owned_link "/usr/local/bin/azpro" "/opt/mpro/menu"
+    remove_owned_link "/usr/local/bin/xpro" "/opt/mpro/menu"
     remove_owned_link "/usr/local/bin/wzpro" "/opt/mpro/menu"
     remove_owned_link "/usr/local/bin/wspro" "/opt/mpro/menu"
     remove_owned_link "/usr/local/bin/mpro" "/opt/mpro/menu"
@@ -814,7 +815,7 @@ uninstall_proxy() {
     rmdir /var/cache/azpro /var/cache/wzpro 2>/dev/null || true
     rmdir /opt/mpro 2>/dev/null || true
 
-    echo -e "${GREEN}Azpro desinstalado. SSH e dependências do sistema foram preservados.${NC}"
+    echo -e "${GREEN}Xpro desinstalado. SSH e dependências do sistema foram preservados.${NC}"
     echo -e "${YELLOW}Arquivos não reconhecidos em /opt/mpro, se houver, foram preservados.${NC}"
     sleep 3
     exit 0

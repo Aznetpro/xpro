@@ -1,4 +1,4 @@
-# Mpro v2.0 - com suporte xHTTP (SplitHTTP)
+# Xpro - com suporte xHTTP (SplitHTTP)
 
 Proxy multi-protocolo em Rust com suporte exclusivo para o protocolo xHTTP (SplitHTTP) na porta 443, compatível com o cliente **XHTTP-DEMO**.
 
@@ -17,8 +17,8 @@ Proxy multi-protocolo em Rust com suporte exclusivo para o protocolo xHTTP (Spli
 
 ```bash
 # Clonar ou copiar os arquivos para o servidor
-git clone https://github.com/Lacasx1/Azpro.git
-cd Azpro
+git clone https://github.com/Aznetpro/xpro.git
+cd xpro
 
 # Substituir os arquivos pelo v2.0
 cp menu.sh menu_original.sh.backup
@@ -32,7 +32,8 @@ chmod +x install.sh
 ## Uso
 
 ```bash
-azpro   # Único comando para abrir o menu deste proxy
+xpro    # Comando principal para abrir o menu deste proxy
+azpro   # Compatibilidade com instalações antigas
 ```
 
 ### Opção 01 — HTTP/TLS compatível com AWProxy
