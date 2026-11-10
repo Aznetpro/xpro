@@ -50,7 +50,7 @@ pub async fn handle_tls(socket: TcpStream) -> Result<()> {
     }
 }
 
-/// HCR: termina TLS no Azpro e encaminha o SSH já descriptografado ao sshd.
+/// HCR: termina TLS no Xpro e encaminha o SSH já descriptografado ao sshd.
 /// O cliente pode aceitar o certificado autoassinado quando usa "Allow insecure".
 pub async fn handle_hcr(socket: TcpStream) -> Result<()> {
     socket.set_nodelay(true)?;

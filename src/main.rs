@@ -32,7 +32,7 @@ async fn main() -> Result<(), Error> {
     let tls_enabled = has_arg("-t") || !has_arg("--no-tls");
     let quic_port = get_quic_port();
 
-    println!("[Azpro] Proxy TCP multiprotocolo v2.6.0");
+    println!("[Xpro] Proxy TCP multiprotocolo v2.6.0");
     println!("[TCP] Porta: {}", port);
     if multiprotocol_enabled {
         println!(
@@ -462,7 +462,7 @@ fn get_status() -> String {
             return args[i + 1].clone();
         }
     }
-    "@Azpro".to_string()
+    "@Xpro".to_string()
 }
 
 fn has_arg(arg: &str) -> bool {
@@ -496,12 +496,12 @@ mod tests {
     #[test]
     fn configured_status_is_used_for_each_http_handshake_response() {
         assert_eq!(
-            http_status_response(101, "@Azpro"),
-            b"HTTP/1.1 101 @Azpro\r\n\r\n"
+            http_status_response(101, "@Xpro"),
+            b"HTTP/1.1 101 @Xpro\r\n\r\n"
         );
         assert_eq!(
-            http_status_response(200, "@Azpro"),
-            b"HTTP/1.1 200 @Azpro\r\n\r\n"
+            http_status_response(200, "@Xpro"),
+            b"HTTP/1.1 200 @Xpro\r\n\r\n"
         );
     }
 

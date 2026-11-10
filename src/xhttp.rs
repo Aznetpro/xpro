@@ -28,7 +28,7 @@ async fn main() -> Result<(), XhttpError> {
     let status = get_status();
     let ssh_port = get_ssh_port();
 
-    println!("[Mpro] xHTTP v3.3.4 (XHTTP + SSL Payload Support)");
+    println!("[Xpro] xHTTP v3.3.4 (XHTTP + SSL Payload Support)");
     println!("[xHTTP] Porta: {} | SSH Backend: 127.0.0.1:{}", port, ssh_port);
 
     let listener = TcpListener::bind(format!("[::]:{}", port)).await.map_err(|e| Box::new(e) as XhttpError)?;
@@ -264,5 +264,5 @@ fn build_tls_config(cp: &str, kp: &str) -> Result<rustls::ServerConfig, XhttpErr
 
 fn get_port() -> u16 { std::env::args().enumerate().find(|(_, a)| a == "--port" || a == "-p").and_then(|(i, _)| std::env::args().nth(i+1)).and_then(|a| a.parse().ok()).unwrap_or(443) }
 fn get_ssh_port() -> u16 { std::env::args().enumerate().find(|(_, a)| a == "--ssh-port").and_then(|(i, _)| std::env::args().nth(i+1)).and_then(|a| a.parse().ok()).unwrap_or(22) }
-fn get_status() -> String { std::env::args().enumerate().find(|(_, a)| a == "--status" || a == "-s").and_then(|(i, _)| std::env::args().nth(i+1)).unwrap_or("@Mpro".to_string()) }
+fn get_status() -> String { std::env::args().enumerate().find(|(_, a)| a == "--status" || a == "-s").and_then(|(i, _)| std::env::args().nth(i+1)).unwrap_or("@Xpro".to_string()) }
 fn generate_session_id() -> String { format!("{:x}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_millis()) }

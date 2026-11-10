@@ -35,7 +35,7 @@ async fn main() -> Result<(), XhttpError> {
     let subnet = get_arg("--subnet").unwrap_or_else(|| "10.10.0.0/16".to_string());
 
     println!("+--------------------------------------------------------+");
-    println!("|  Proxy + Protocolo integrados (Mpro XHTTP v3.6.0)    |");
+    println!("|  Proxy + Protocolo integrados (Xpro XHTTP v3.6.0)    |");
     println!("+--------------------------------------------------------+");
     println!("|  CONFIGURACOES ATUAIS                                  |");
     println!("+--------------------------------------------------------+");
@@ -515,6 +515,6 @@ fn build_tls_config(cp: &str, kp: &str) -> Result<rustls::ServerConfig, XhttpErr
 fn get_port() -> u16 { std::env::args().enumerate().find(|(_, a)| a == "--port" || a == "-p").and_then(|(i, _)| std::env::args().nth(i+1)).and_then(|a| a.parse().ok()).unwrap_or(8000) }
 fn get_quic_port() -> u16 { std::env::args().enumerate().find(|(_, a)| a == "--quic-port").and_then(|(i, _)| std::env::args().nth(i+1)).and_then(|a| a.parse().ok()).unwrap_or(8001) }
 fn get_ssh_port() -> u16 { std::env::args().enumerate().find(|(_, a)| a == "--ssh-port").and_then(|(i, _)| std::env::args().nth(i+1)).and_then(|a| a.parse().ok()).unwrap_or(22) }
-fn get_status() -> String { std::env::args().enumerate().find(|(_, a)| a == "--status" || a == "-s").and_then(|(i, _)| std::env::args().nth(i+1)).unwrap_or("@Mpro".to_string()) }
+fn get_status() -> String { std::env::args().enumerate().find(|(_, a)| a == "--status" || a == "-s").and_then(|(i, _)| std::env::args().nth(i+1)).unwrap_or("@Xpro".to_string()) }
 fn has_arg(arg: &str) -> bool { std::env::args().any(|a| a == arg) }
 fn get_arg(arg: &str) -> Option<String> { std::env::args().enumerate().find(|(_, a)| a == arg).and_then(|(i, _)| std::env::args().nth(i+1)) }

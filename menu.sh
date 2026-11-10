@@ -156,7 +156,7 @@ create_service() {
     fi
     cat > "$SERVICE_FILE" << EOF
 [Unit]
-Description=Mpro - Porta ${PORT}
+Description=Xpro - Porta ${PORT}
 After=network.target
 [Service]
 Type=simple
@@ -178,7 +178,7 @@ create_xhttp_service() {
     EXTRA_ARGS="-p ${PORT} -s ${STATUS} --ssh-port ${SSH_PORT}"
     cat > "$SERVICE_FILE" << EOF
 [Unit]
-Description=Mpro xHTTP + SSL Tunnel - Porta ${PORT}
+Description=Xpro xHTTP + SSL Tunnel - Porta ${PORT}
 After=network.target
 [Service]
 Type=simple
@@ -216,8 +216,8 @@ open_port() {
         read -r -p "Enter pra continuar..."
         return
     fi
-    read -r -p "Status HTTP (Padrão: @Azpro): " STATUS
-    [[ -z "$STATUS" ]] && STATUS="@Azpro"
+    read -r -p "Status HTTP (Padrão: @Xpro): " STATUS
+    [[ -z "$STATUS" ]] && STATUS="@Xpro"
     read -p "Habilitar somente SSH? (s/n): " SSH_ONLY
     SSH_ONLY=${SSH_ONLY,,}
     mkdir -p /opt/mpro
@@ -238,7 +238,7 @@ open_xhttp() {
     box_bottom
     echo ""
     read -r -p "Nome do status HTTP: " STATUS
-    [[ -z "$STATUS" ]] && STATUS="@Azpro"
+    [[ -z "$STATUS" ]] && STATUS="@Xpro"
     read -p "Porta SSH backend (Padrão: 22): " SSH_PORT
     [[ -z "$SSH_PORT" ]] && SSH_PORT="22"
     mkdir -p /opt/mpro
@@ -295,14 +295,14 @@ open_integrated() {
         QUIC_ARG="--quic --quic-port $QPORT"
     fi
     read -r -p "Nome do status HTTP: " STATUS
-    [[ -z "$STATUS" ]] && STATUS="@Azpro"
+    [[ -z "$STATUS" ]] && STATUS="@Xpro"
     mkdir -p /opt/mpro
     if [ ! -f "/opt/mpro/cert.pem" ]; then
         openssl req -x509 -newkey rsa:2048 -keyout /opt/mpro/key.pem -out /opt/mpro/cert.pem -days 365 -nodes -subj "/CN=mpro" 2>/dev/null
     fi
     cat > "${SYSTEMD_DIR}/proxy-integrated.service" << EOF
 [Unit]
-Description=Mpro Integrated
+Description=Xpro Integrated
 After=network.target
 [Service]
 Type=simple
@@ -408,7 +408,7 @@ manage_multiprotocol() {
         box_line "${WHITE}${BOLD}MULTIPROTOCOLO + STATUS${NC}"
         box_mid
         if ((${#ACTIVE_PORTS[@]} == 0)); then
-            box_line "${YELLOW}Nenhuma porta Azpro ativa.${NC}"
+            box_line "${YELLOW}Nenhuma porta Xpro ativa.${NC}"
         else
             for ((INDEX=0; INDEX<${#ACTIVE_PORTS[@]}; INDEX++)); do
                 PORT=${ACTIVE_PORTS[$INDEX]}
@@ -464,7 +464,7 @@ restart_port() {
         box_line "${WHITE}${BOLD}Reiniciar porta aberta${NC}"
         box_mid
         if ((${#ACTIVE_SERVICES[@]} == 0)); then
-            box_line "${YELLOW}Nenhum serviço Azpro ativo.${NC}"
+            box_line "${YELLOW}Nenhum serviço Xpro ativo.${NC}"
         else
             for ((INDEX=0; INDEX<${#ACTIVE_SERVICES[@]}; INDEX++)); do
                 printf -v CHOICE '%02d' "$((INDEX + 1))"
@@ -537,7 +537,7 @@ close_port() {
         box_line "${WHITE}${BOLD}Fechar porta aberta${NC}"
         box_mid
         if ((${#ACTIVE_SERVICES[@]} == 0)); then
-            box_line "${YELLOW}Nenhum serviço Azpro ativo.${NC}"
+            box_line "${YELLOW}Nenhum serviço Xpro ativo.${NC}"
         else
             for ((INDEX=0; INDEX<${#ACTIVE_SERVICES[@]}; INDEX++)); do
                 printf -v CHOICE '%02d' "$((INDEX + 1))"
@@ -642,7 +642,7 @@ update_from_github() {
     show_banner
     echo ""
     box_top
-    box_line "${WHITE}${BOLD}Atualizar Azpro pelo GitHub${NC}"
+    box_line "${WHITE}${BOLD}Atualizar Xpro pelo GitHub${NC}"
     box_mid
     box_line "A atualização recompila os binários."
     box_line "Os serviços podem reiniciar."
@@ -837,7 +837,7 @@ show_menu() {
     box_line "${WHITE}[05]${NC} ${GREEN}- PROTOCOLO INTEGRADO${NC}"
     box_line "${WHITE}[06]${NC} ${GREEN}- ATUALIZAR PELO GITHUB${NC}"
     box_line "${WHITE}[07]${NC} ${GREEN}- MULTIPROTOCOLO + STATUS${NC}"
-    box_line "${RED}[08]${NC} ${GREEN}- DESINSTALAR AZPRO${NC}"
+    box_line "${RED}[08]${NC} ${GREEN}- DESINSTALAR XPRO${NC}"
     box_line ""
     box_line "${WHITE}[00]${NC} - SAIR"
     box_bottom

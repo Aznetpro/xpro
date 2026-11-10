@@ -1,4 +1,4 @@
-# Mpro - Changelog
+# Xpro - Changelog
 
 ## v3.6.0 - Latency Optimized for Low Latency Networks
 
@@ -79,9 +79,9 @@ Os certificados QUIC são gerados automaticamente em `/opt/mpro/cert.pem` e `/op
 ### Arquitetura
 
 ```
-Cliente → [TCP:443] → Mpro → SSH:22 / VPN:1194
-Cliente → [UDP:443] → Mpro → SSH:22 / VPN:1194
-Cliente → [QUIC:8001] → Mpro → SSH:22 / VPN:1194
+Cliente → [TCP:443] → Xpro → SSH:22 / VPN:1194
+Cliente → [UDP:443] → Xpro → SSH:22 / VPN:1194
+Cliente → [QUIC:8001] → Xpro → SSH:22 / VPN:1194
 ```
 
 ---

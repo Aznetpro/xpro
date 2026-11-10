@@ -14,7 +14,7 @@
 [1m[92m     Running[0m `target/debug/mpro-xhttp -p 8080 --ssh-port 2222`
 [xHTTP] Servico xHTTP SplitHTTP rodando na porta: 8080
 [xHTTP] SSH backend: 127.0.0.1:2222
-[xHTTP] Status: @Mpro
+[xHTTP] Status: @Xpro
 [xHTTP] Certs: /opt/mpro/cert.pem + key.pem
 [xHTTP] Aguardando conexões...
 [xHTTP] Conexão: first_byte=0x47 bytes=3
